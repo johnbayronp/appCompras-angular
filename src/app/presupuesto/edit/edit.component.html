@@ -1,0 +1,140 @@
+<!-- REACTIVE FORMS -->
+<div class="row">
+    <!--Division en tres particiones con el fin de llegar a varios dispotivos-->   
+    <!--Parte izquierda-->
+    <div class="col col-md" ></div>
+  
+    <!-- Parte centrar donde va el formulario-->
+    <div class="col-10 col-md-8">
+      
+      <h1 style="text-align: center"> Editar Presupuesto </h1>   
+      <a class="btn btn-info  float-md-right" 
+        [routerLink]="['/viewpresupuesto']">Regresar al listado</a>
+      <!-- [formGroup] damos nombre a nuestro form "x"
+            (ngSubmit) cuando pulsemos el button de tipo submit
+            llamara el metodo onSubmit()-->
+      <form [formGroup]="presupuestoForm" (ngSubmit)="onSubmit()">
+
+          <!-- Proveedor -->
+          <div class="form-group">
+            <label for="proveedor">Proveedor</label>
+
+            <input type="text"
+                  class="form-control"
+                  id="proveedor"
+                  formControlName="proveedor"
+                  [(ngModel)]="presupuesto.proveedor">
+
+            <p class="alert alert-danger uncheck" 
+            *ngIf="presupuestoForm.controls.proveedor.invalid
+            && presupuestoForm.controls.proveedor.touched">
+            El proveedor debe tener mas de 10 caracteres y es campo obligatorio.
+            </p>
+            
+          </div>
+
+          <!-- fecha -->
+          <div class="form-group">
+            <label for="fecha">Fecha</label>
+            <input type="date"
+                  class="form-control"
+                  id="fecha"
+                  formControlName="fecha"
+                  [(ngModel)]="presupuesto.fecha">
+          </div>
+
+          <!-- concepto -->
+          <div class="form-group">
+            <label for="concepto">Concepto</label>
+            <input type="text"
+                  class="form-control"
+                  id="concepto"
+                  formControlName="concepto"
+                  [(ngModel)]="presupuesto.concepto">
+          </div>
+          
+          <!-- Base Imponible -->
+          <div class="form-group">
+            <label for="base">Precio Producto</label>
+            <input type="number"
+                  class="form-control"
+                  id="base"
+                  formControlName="base"
+                  [(ngModel)]="presupuesto.base">
+          </div>
+
+          <!-- Tipo de iva -->
+          <div class="form-group">
+            <label for="tipo">Tipo de IVA</label>
+            <select id="tipo" class="form-control"
+                    formControlName="tipo"
+                    [(ngModel)]="presupuesto.tipo">
+                <option value="">Selecione...</option>
+                <option value=0>0%</option>
+                <option value=0.04>4%</option>
+                <option value=0.10>10%</option>
+                <option value=0.19>19%</option>
+            </select>
+          </div>
+
+          <!-- Importe de iva-->
+          <!-- [(ngModel)] ="valores agregados desde el input
+             y TS en onChanges()" disabled para que el
+            usario no edite los resultados -->
+          <div class="form-group">
+              <label for="iva">Importe IVA</label>
+              <input type="number"
+                    class="form-control"
+                    id="iva"
+                    formControlName="iva"
+                    [(ngModel)]="presupuestoForm.value.iva"
+                    disabled>
+          </div>
+
+          <!-- Total de presupuesto -->
+          <div class="form-group">
+              <label for="total">Total Preuspuesto</label>
+              <input type="number"
+                    class="form-control"
+                    id="total"
+                    formControlName="total"
+                    [(ngModel)]="presupuestoForm.value.total"
+                    disabled>
+            </div>
+            
+          <!-- cuando envio se ejecuta submit y envia por get los valores -->
+          <div class="button-group">
+            <button type="submit" class="btn btn-outline-success" 
+                  [disabled]="!presupuestoForm.valid">
+              Guardar Cambios
+            </button> 
+            <a class="btn btn-outline-danger" [routerLink]="['/viewpresupuesto']" >
+            Cancelar
+            </a>
+          
+          <!-- Validators permite tomar el formulario y validar todos los campos o
+          hacerlo uno a uno ejemplo: presupuestoForm.controls.id.valid-->
+          <p *ngIf="presupuestoForm.invalid && presupuestoForm.touched"
+           class="alert alert-danger uncheck"> 
+           Llene todos los campos del formulario Por favor.
+          </p>  
+          <hr>
+          </div>
+      </form>
+<!--
+      <pre>
+        Valor del formulario: {{ presupuestoForm.value | json}}
+      </pre>
+
+      <pre>
+        Estado del formulario: {{ presupuestoForm.status | json }}
+      </pre>
+      
+      
+      <pre>
+          valor del objeto: {{ presupuesto | json }}
+      </pre>
+-->
+    </div>
+    <div class="col col-md" ></div>
+</div>

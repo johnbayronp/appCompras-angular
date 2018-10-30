@@ -1,0 +1,25 @@
+<!-- Barra de navegacion-->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <!--[routerLink]="['/router']"-->
+  <a class="navbar-brand" [routerLink]="['/']" >App Compras</a>
+
+  <div class="collapse navbar-collapse" id="containerNavbar">
+    <ul class="navbar-nav mr-auto w-100 justify-content-end">
+      <!-- Item 1 : propeiedades de routerLink * <a>Dentro de la etiqueta</a> [routerLink]="['/router']"
+        *  <li> Dentro de la etiqueta</li> : routerLinkActive="router-link-active"
+        *  [routerLinkActiveOptions]="{ exact: true }" -> solo cuando sea verdadero el click
+        *-->
+      <li class="nav-item"  routerLinkActive="router-link-active" >
+        <a class="nav-link" [routerLink]="['/']">Inicio</a>
+      </li>
+      
+      <li class="nav-item" routerLinkActive="router-link-active" >
+        <a class="nav-link" [routerLink]="['/proveedores']">Proveedores</a>
+      </li>
+
+      <li class="nav-item" routerLinkActive="router-link-active" >
+          <a class="nav-link" [routerLink]="['/viewpresupuesto']"> Presupuesto</a>
+        </li>
+    </ul>
+  </div>
+</nav>

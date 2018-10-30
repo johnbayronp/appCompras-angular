@@ -1,0 +1,119 @@
+<!--TEMPLATE DRIVEN-->
+<div class="row">
+  <!--Division en tres particiones con el fin de llegar a varios dispotivos-->
+  
+  <!--Parte izquierda-->
+  <div class="col col-md" ></div>
+
+  <!-- Parte centrar donde va el formulario-->
+  <div class="col-10 col-sm-10">
+    <h1 style="text-align: center"> Formulario Proveedor </h1>     
+    
+    <!-- Identificamos (ngSubmit)= con el metodo "onSubmit()" para cuando
+        se clickque validar envie nuestros datos al objeto. #formpro sera tendra una id
+        local, ngForm es una propiedad de FormModule-->
+    <form (ngSubmit)="onSubmit()" #formpro="ngForm"> 
+      
+      <!--Nombre-->
+      <div class="form-group">
+        <label for="nombre">Nombre</label>
+        <!--En cada input agregamos la identificacion con ngModel name="x"--->
+          <input type="text"  id="nombre" 
+                  class="form-control" placeholder=""
+                  ngModel name="nombre">
+          <!--<small id="helpNombre" class="text-muted">Este campo no ha sido llenado.</small>-->
+      </div>
+      
+      <!--Telefono-->
+      <div class="form-group">
+        <label for="telefono">Telefono</label>
+          <input type="number"  id="telefono" 
+                  class="form-control" placeholder=""
+                  ngModel name="telefono">
+          <!--<small id="helpTelefono" class="text-muted">Este campo no ha sido llenado.</small>-->
+      </div>
+      
+      <!--Nacionalidad-->
+      <div class="form-group">
+        <label for="nacionalidad">Nacionalidad</label>
+          <input type="text"  id="nacionalidad" 
+                  class="form-control" placeholder=""
+                  ngModel name="nacionalidad">
+          <!--<small id="helpNacionalidad" class="text-muted">Este campo no ha sido llenado.</small>-->
+      </div>
+      
+      <!--Email -->
+      <div class="form-group">
+
+          <i class="fa fa-check-circle check" *ngIf="email.valid"> </i>
+          <i class="fa fa-exclamation-circle uncheck" 
+            *ngIf="email.invalid && email.touched"> </i> 
+          
+          <label for="email">Email <strong>*</strong> </label>
+          <!--  requiered email :> para validar el email mediante angular con los 
+              metodos dirty pristine invalid valid touched , y hacemos
+              riquired email  --  #email le decimos que
+            viene de ngModel para que evalue los iconos de la linea 52 y 53-->
+            
+            <input type="email"  id="email" 
+                  class="form-control" 
+                  ngModel name="email" 
+                  required email
+                  #email="ngModel">
+            <p  class="alert alert-danger"
+                *ngIf="email.invalid && email.touched">
+                Introduzca un correo electronico valido.
+            </p>
+          <!--<small id="helpEmail" class="text-muted">Este campo no ha sido llenado.</small>-->
+      </div>
+      
+      <!--Ciudad -->
+      <div class="form-group">
+        <label for="ciudad">Ciudad</label>
+          <select class="form-control"  id="ciudad"
+                  ngModel name="ciudad">
+            <option value="">Seleccione una ciudad</option>
+            <!-- Esta opcion nos itera el array de ciudades , selecionamos la ciudad
+                y utilizamos [value] para que al enviar nos envie la ciudad, interpolamos
+              {{ ciudad }} para que se muestre en el DOM-->
+            <option *ngFor="let ciudad of ciudades" [value]="ciudad">{{ ciudad }}</option>
+          </select>
+          <!--<small id="helpCiudad" class="text-muted">Este campo no ha sido llenado.</small>-->
+      </div>
+
+      <!--Empresa-->
+      <div class="form-group">
+        <label for="empresa">Empresa</label>
+          <input type="text"  id="empresa" 
+                  class="form-control" placeholder=""
+                  ngModel name="empresa">
+          <!--<small id="helpEmpresa" class="text-muted">Este campo no ha sido llenado.</small>-->
+      </div>
+      <hr>
+
+      <!-- btn submit ( Envio ) , [disable] = si "true" cuando valide todos los campos
+      requeridos obligatorios se activara -->
+      <button type="submit" class="btn btn-primary"
+              [disabled]="!formpro.valid">Añadir proveedor </button>
+    
+    </form>
+    <br>
+    <!--Prueba datos enviados y visualizados en Json
+    <pre>
+      {{proveedor | json}}
+    </pre>
+    -->
+  <!--
+    Estados de validacion NgForm
+    <h2>Estado dirty: {{ formpro.controls.email.dirty }}</h2>
+    <h2>Estado valid: {{ formpro.controls.email.valid false }}</h2>
+    <h2>Estado touched: {{ formpro.controls.email.touched }}</h2>
+    <h2>Estado invalid: {{ formpro.controls.email.invalid }}</h2>
+    <h2>Estado pristine: {{ formpro.controls.email.pristine }}</h2>
+    -->
+  </div>
+  
+  <!--Parte derecha -->
+  <div class="col col-md" ></div>
+
+</div>
