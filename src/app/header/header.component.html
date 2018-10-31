@@ -9,17 +9,26 @@
         *  <li> Dentro de la etiqueta</li> : routerLinkActive="router-link-active"
         *  [routerLinkActiveOptions]="{ exact: true }" -> solo cuando sea verdadero el click
         *-->
-      <li class="nav-item"  routerLinkActive="router-link-active" >
-        <a class="nav-link" [routerLink]="['/']">Inicio</a>
-      </li>
+        <!-- INICIO-->
+        <li class="nav-item"  routerLinkActive="router-link-active" >
+          <a class="nav-link" [routerLink]="['/']">Inicio</a>
+        </li>
       
-      <li class="nav-item" routerLinkActive="router-link-active" >
-        <a class="nav-link" [routerLink]="['/proveedores']">Proveedores</a>
-      </li>
+        <!-- PROVEEDORES-->
+        <li class="nav-item" routerLinkActive="router-link-active" >
+          <a class="nav-link" [routerLink]="['/proveedores']">Proveedores</a>
+        </li>
 
-      <li class="nav-item" routerLinkActive="router-link-active" >
+        <!-- PRESUPUESTO-->
+        <li class="nav-item" routerLinkActive="router-link-active" >
           <a class="nav-link" [routerLink]="['/viewpresupuesto']"> Presupuesto</a>
         </li>
+        
+        <!-- REGISTRO-->
+        <li class="nav-item" routerLinkActive="router-link-active" >
+            <a class="nav-link" [routerLink]="['/registro']"> Registrate</a>
+        </li>  
+        
     </ul>
   </div>
 </nav>

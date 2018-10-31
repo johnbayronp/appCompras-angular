@@ -1,3 +1,4 @@
+/** CLASES  */
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule , Routes } from '@angular/router';
@@ -5,9 +6,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 /** Importamos para peticiones POST | Mediante Http */
 import { HttpClientModule } from '@angular/common/http';
 
-
+/** SERVICIOS */
 import { ProveedoresService } from './servicios/proveedores.service';
 import { PresupuestoService } from './servicios/presupuesto.service';
+import { AutenticacionService } from './servicios/autenticacion.service';
+
+/** COMPONENTES */
+
 import { AppComponent } from './app.component';
 import { ProveedoresComponent } from './proveedores/proveedores/proveedores.component';
 import { InicioComponent } from './inicio/inicio.component';
@@ -17,7 +22,10 @@ import { CopyrightComponent } from './copyright/copyright.component';
 import { AddpresComponent } from './presupuesto/addpres/addpres.component';
 import { ViewpresupuestoComponent } from './presupuesto/viewpresupuesto/viewpresupuesto.component';
 import { EditComponent } from './presupuesto/edit/edit.component';
+import { RegistroComponent } from './autenticacion/registro/registro.component';
 
+
+/** RUTAS  */
 /** Creamos las rutas cada una en formato document (json)*/
 const routes: Routes = [
   /** path:'' *(raiz)* , component:*(Clase de component la misma de import)*
@@ -34,6 +42,8 @@ const routes: Routes = [
         component: AddpresComponent },
       { path: 'viewpresupuesto',
         component: ViewpresupuestoComponent},
+      { path: 'registro',
+        component: RegistroComponent},
       { path: '**',
         component: InicioComponent },
     ];
@@ -48,17 +58,18 @@ const routes: Routes = [
     CopyrightComponent,
     AddpresComponent,
     ViewpresupuestoComponent,
-    EditComponent
+    EditComponent,
+    RegistroComponent
   ],
   imports: [
-    BrowserModule,
+  BrowserModule,
     /** Creamos RouterModule y pasamos las rutas (routes) */
     RouterModule.forRoot(routes),
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [ProveedoresService, PresupuestoService],
+  providers: [ProveedoresService, PresupuestoService, AutenticacionService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

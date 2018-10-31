@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup , FormBuilder, Validators } from '@angular/forms';
 /** Importar un servicio  */
 import { PresupuestoService } from '../../servicios/presupuesto.service';
+/** clases para sacar el id desde el router  */
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -26,6 +27,7 @@ export class EditComponent implements OnInit {
               private activatedRouter: ActivatedRoute) {
                 this.activatedRouter.params.subscribe( parametros => {
                   this.id = parametros ['id'];
+                  /** lo que recibimos lo colocammos e this.presupuesto */
                   this.presupuestoService.getPresupuesto( this.id )
                   .subscribe( presupuesto =>
                     this.presupuesto = presupuesto);
@@ -68,7 +70,7 @@ export class EditComponent implements OnInit {
    */
   onSubmit() {
     this.presupuesto = this.savePresupuesto();
-    /** Pasamos el parametro de presupuesto mediante el metodo creado en los
+    /** Pasamos el parametro de presupuesto mediante el metodo PUT creado en los
      * servicios de presupuesto y subscribimos en el parametro newpres.
      */
 

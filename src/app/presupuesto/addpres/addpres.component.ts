@@ -24,6 +24,7 @@ export class AddpresComponent implements OnInit {
   base: any;
   total: any = 0;
 
+
   /** pf: (creada por nosotros donde tendremos el contructor del form)
    * presupuestoService:(donde guardaremos nuestro servicio creado post)
    */
@@ -70,9 +71,11 @@ export class AddpresComponent implements OnInit {
    */
   onSubmit() {
     this.presupuesto = this.savePresupuesto();
-    /** Pasamos el parametro de presupuesto mediante el metodo creado en los
-     * servicios de presupuesto y subscribimos en el parametro newpres.
-     */
+    /** ENVIO METODO POST
+     * Pasamos el parametro de presupuesto mediante el metodo creado en los
+     * servicios de presupuesto y subscribimos en el parametro newpres que es
+     * obj.JSON => presupuesto ( savePresupuesto = proveedor,fecha,concepto,...etc).
+      y lo suscribimos como newpres mediante metodo POST ala base de datos firebase */
     this.presupuestoService.postPresupuesto(this.presupuesto)
     .subscribe(newpres => {
 
@@ -82,7 +85,11 @@ export class AddpresComponent implements OnInit {
     this.presupuestoForm.reset();
   }
 
-  /** Mediante el metodo get('') obtenemos el valor traido de presupuestoForm */
+
+  /** GUARDAR PRESUPUESTO
+   *  Mediante el metodo get('') obtenemos el valor traido de presupuestoForm 
+   * Esta funcion guarda los valores de cada input
+  */
   savePresupuesto() {
     const savePresupuesto = {
       proveedor: this.presupuestoForm.get('proveedor').value,

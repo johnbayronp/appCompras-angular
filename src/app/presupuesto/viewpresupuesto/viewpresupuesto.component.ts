@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PresupuestoService } from '../../servicios/presupuesto.service';
+import { NullViewportScroller } from '@angular/common/src/viewport_scroller';
 @Component({
   selector: 'app-viewpresupuesto',
   templateUrl: './viewpresupuesto.component.html',
@@ -31,6 +32,29 @@ export class ViewpresupuestoComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  recarga() {
+
+          /*** Para que se refresque la tabla  hacemos el array  presuspuesto = vacio 
+           * y copiamos todo el metodo susbcribe de getPresupuesto**/
+          this.presupuestos = [];
+          this.presupuestosService.getPresupuestos().subscribe(presupuesto => {
+            for (const id$ in presupuesto) {
+               if (presupuesto.hasOwnProperty(id$)) {
+                   const p = presupuesto[id$];
+                    p.id$ = id$;
+                    this.presupuestos.push(p);
+                }
+            }
+          });
+  }
+
+  eliminarPresupuesto(id$) {
+    this.presupuestosService.delPresupuesto(id$)
+        .subscribe(res => {
+          this.recarga();
+    });
   }
 
 }
