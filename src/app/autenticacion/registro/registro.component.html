@@ -2,7 +2,7 @@
   <div class="col col-md"></div>
   
   <div class="col col-10 col-md-6">
-    <form [formGroup]="registroForm"] (ngSubmit)="onSubmit()">
+    <form [formGroup]="registroForm" (ngSubmit)="onSubmit()">
       
       <h4>Registrarse</h4>
       <hr>
@@ -13,7 +13,9 @@
         <input type="text" class="form-control"
               id="userName"
               formControlName="user">
-
+      <p class="alert alert-danger" *ngIf="erroresForm.user"> 
+        {{ erroresForm.user }}
+      </p>
 
       <!-- Email-->
       <label> Correo Electronico:</label>
@@ -21,18 +23,24 @@
         <input type="email" class="form-control"
               id="inputEmail" autofocus
               formControlName="email">
-      
+      <p class="alert alert-danger" *ngIf="erroresForm.email"> 
+                {{ erroresForm.email  }}
+      </p>
 
       <!-- Contraseña-->
-      <label>Contraeña:</label>
+      <label>Contraseña:</label>
       
         <input type="password" class="form-control"
               id="inputPassword"
               formControlName="password">
-      
+        <p class="alert alert-danger" *ngIf="erroresForm.password"> 
+                {{ erroresForm.password }}
+        </p>
+
       <!-- Registro Enviar -->
       <hr>
-      <button type="submit" class="btn btn-primary form-control">
+      <button type="submit" class="btn btn-primary form-control"
+              [disabled]="!registroForm.valid">
         Registrar
       </button>
     </form>

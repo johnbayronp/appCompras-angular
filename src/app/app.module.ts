@@ -23,6 +23,7 @@ import { AddpresComponent } from './presupuesto/addpres/addpres.component';
 import { ViewpresupuestoComponent } from './presupuesto/viewpresupuesto/viewpresupuesto.component';
 import { EditComponent } from './presupuesto/edit/edit.component';
 import { RegistroComponent } from './autenticacion/registro/registro.component';
+import { InisesComponent } from './autenticacion/inises/inises.component';
 
 
 /** RUTAS  */
@@ -42,6 +43,8 @@ const routes: Routes = [
         component: AddpresComponent },
       { path: 'viewpresupuesto',
         component: ViewpresupuestoComponent},
+      { path: 'inises',
+        component: InisesComponent},
       { path: 'registro',
         component: RegistroComponent},
       { path: '**',
@@ -59,7 +62,8 @@ const routes: Routes = [
     AddpresComponent,
     ViewpresupuestoComponent,
     EditComponent,
-    RegistroComponent
+    RegistroComponent,
+    InisesComponent
   ],
   imports: [
   BrowserModule,

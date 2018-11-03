@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="col col-md"></div>
+  <div class="col col-10 col-md-6">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" >
+      <h2>Login</h2>
+      <hr>
+
+      <!-- Email-->
+      <label> Correo Electronico:</label>
+      
+        <input type="email" class="form-control"
+              id="inputEmail" autofocus
+              formControlName="email">
+
+      <!-- Contraseña-->
+      <label>Contraseña:</label>
+      
+        <input type="password" class="form-control"
+              id="inputPassword"
+              formControlName="password">
+
+      <!-- Login -->
+      <hr>
+      <button type="submit" class="btn btn-primary form-control">
+        Login
+      </button>
+
+      <!-- Mensaje de alerta de usuario no registrado o no encontrado -->
+      <p class="alert alert-danger" *ngIf="isAuten()"> La cuenta de correo no esta registrada
+         , y/o la contraseña no es la correcta.</p>
+
+    </form>  
+  </div>
+  <div class="col col-md"></div>
+
+</div>

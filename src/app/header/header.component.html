@@ -1,7 +1,7 @@
 <!-- Barra de navegacion-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <!--[routerLink]="['/router']"-->
-  <a class="navbar-brand" [routerLink]="['/']" >Bapesu Store</a>
+  <a class="navbar-brand" [routerLink]="['/']" >Bapesu Mantenimiento</a>
 
   <div class="collapse navbar-collapse" id="containerNavbar">
     <ul class="navbar-nav mr-auto w-100 justify-content-end">
@@ -11,24 +11,40 @@
         *-->
         <!-- INICIO-->
         <li class="nav-item"  routerLinkActive="router-link-active" >
-          <a class="nav-link" [routerLink]="['/']">Inicio</a>
+          <a class="nav-link" [routerLink]="['/']"
+          *ngIf="isAuten()">Inicio</a>
         </li>
       
         <!-- PROVEEDORES-->
         <li class="nav-item" routerLinkActive="router-link-active" >
-          <a class="nav-link" [routerLink]="['/proveedores']">Proveedores</a>
+          <a class="nav-link" [routerLink]="['/proveedores']"
+          *ngIf="isAuten()">Proveedores</a>
         </li>
 
         <!-- PRESUPUESTO-->
         <li class="nav-item" routerLinkActive="router-link-active" >
-          <a class="nav-link" [routerLink]="['/viewpresupuesto']"> Presupuesto</a>
+          <a class="nav-link" [routerLink]="['/viewpresupuesto']"
+          *ngIf="isAuten()"> Presupuesto</a>
         </li>
         
         <!-- REGISTRO-->
         <li class="nav-item" routerLinkActive="router-link-active" >
-            <a class="nav-link" [routerLink]="['/registro']"> Registrate</a>
+            <a class="nav-link" [routerLink]="['/registro']"
+            *ngIf="!isAuten()"> Registrate</a>
+        </li>  
+
+        <!-- Login-->
+        <li class="nav-item" routerLinkActive="router-link-active" >
+          <a class="nav-link" [routerLink]="['/inises']"
+          *ngIf="!isAuten()"> Login</a>
         </li>  
         
+        <!-- Cerrar Sesion-->
+        <li class="nav-item" routerLinkActive="router-link-active" >
+          <button class="btn btn-danger"
+          *ngIf="isAuten()" (click)="loginOut()"> Cerrar Sesion</button>
+        </li>
+
     </ul>
   </div>
 </nav>
