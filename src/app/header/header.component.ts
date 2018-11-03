@@ -24,6 +24,6 @@ export class HeaderComponent implements OnInit {
 
   loginOut() {
     this.autenticacionService.logOut();
-    this.router.navigate(['/registro']);
+    this.router.navigate(['/inises']);
   }
 }

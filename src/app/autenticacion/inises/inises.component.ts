@@ -13,6 +13,9 @@ export class InisesComponent implements OnInit {
 
   loginForm: FormGroup;
   userdata: any;
+  /** Declaramos la variable mensaje false que tendra accion con el texto de alerta de 
+   * usuario no registrado.
+   */
   mensaje = false;
   reg = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])([A-Za-z\d$@$!%*?&]|[^ ]){8,15}$/;
 
@@ -40,6 +43,12 @@ export class InisesComponent implements OnInit {
      */
     this.userdata = this.saveUserdata();
     this.autenticacionService.loginUser(this.userdata);
+    /** Tiempo de respuesta para el servidor en responder */
+    setTimeout(() => {
+      if (this.isAuten() === false) {
+        this.mensaje = true;
+      }
+    }, 2000);
   }
 
   /** Guardar nuestros datos del usuario en la variable  saveUserdata */
@@ -51,12 +60,9 @@ export class InisesComponent implements OnInit {
     return saveUserdata;
   }
 
-  /** si el usuario no esta registrado , mensaje  lo declaramos como falso S*/
+  /** Trae del servidor si el usuario esta registrado o no con FALSE o TRUE*/
   isAuten() {
-    const res = this.autenticacionService.isAutenticated();
-    if (res === this.mensaje) {
-      return true;
-    }
+    return this.autenticacionService.isAutenticated();
   }
 
 }
