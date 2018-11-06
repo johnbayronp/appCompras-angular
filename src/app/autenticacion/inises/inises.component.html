@@ -21,9 +21,20 @@
 
       <!-- Login -->
       <hr>
-      <button type="submit" class="btn btn-primary form-control">
+      <button type="submit" 
+              class="btn btn-primary form-control"
+              [disabled]="!loginForm.valid"
+              *ngIf="!autenticando">
         Login
       </button>
+
+      <!-- autenticando-->
+      <button type="submit" 
+              class="btn btn-success form-control"
+              *ngIf="autenticando">
+               Autenticando...
+      </button>
+      
       <p class="cursive"> No tengo cuenta, <a [routerLink]="['/registro']">Registrate!</a></p>
       <!-- Mensaje de alerta de usuario no registrado o no encontrado -->
       <p class="alert alert-danger cursive" *ngIf="mensaje"> La cuenta de correo no esta registrada

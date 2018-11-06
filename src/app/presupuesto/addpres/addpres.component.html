@@ -27,19 +27,29 @@
                && presupuestoForm.controls.proveedor.touched"> 
             </i> 
 
-            <input type="text"
-                  class="form-control"
-                  id="proveedor"
-                  formControlName="proveedor">
+            <select class="form-control"
+                    id="proveedor"
+                    formControlName="proveedor">
+              <option value="">Seleccione un proveedor</option>
+              <!-- Esta opcion nos itera el array de ciudades , selecionamos la ciudad
+                  y utilizamos [value] para que al enviar nos envie la ciudad, interpolamos
+                {{ ciudad }} para que se muestre en el DOM-->
+              
+              <option *ngFor="let proveedor of proveedores" 
+                      [value]="proveedor">
+                      {{ proveedor }}      
+              </option>
+
+            </select>
+
             <p class="alert alert-danger uncheck" 
             *ngIf="presupuestoForm.controls.proveedor.invalid
             && presupuestoForm.controls.proveedor.touched">
-            El proveedor debe tener mas de 10 caracteres y es campo obligatorio.
+            Debe seleccionar un proveedor.
             </p>
             
           </div>
-
-
+        
           
           <!-- fecha -->
           <div class="form-group">

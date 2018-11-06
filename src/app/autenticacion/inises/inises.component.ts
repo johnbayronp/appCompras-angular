@@ -19,6 +19,7 @@ export class InisesComponent implements OnInit {
   mensaje = false;
   reg = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])([A-Za-z\d$@$!%*?&]|[^ ]){8,15}$/;
 
+  autenticando = false;
   /** FormBuilder (Contruye el formulario con group),
    * autenticacionService( es el servicio de las autenticacion de registro ),
    * Router(permite el acceso a otras paginas mediante el header),
@@ -41,6 +42,8 @@ export class InisesComponent implements OnInit {
   onSubmit() {
     /** cuando presione enviar , se guardaran los datos en userdata
      */
+
+    this.autenticando = true;
     this.userdata = this.saveUserdata();
     this.autenticacionService.loginUser(this.userdata);
     /** Tiempo de respuesta para el servidor en responder */
@@ -48,6 +51,7 @@ export class InisesComponent implements OnInit {
       if (this.isAuten() === false) {
         this.mensaje = true;
       }
+      this.autenticando = false;
     }, 2000);
   }
 

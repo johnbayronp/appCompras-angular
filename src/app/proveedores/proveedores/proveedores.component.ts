@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+
+/** Clases de Reactive Forms , importar Validators para las validaciones */
+import { FormControl, FormGroup , FormBuilder, Validators } from '@angular/forms';
+
 /** Importamos el servicio creado y su ruta  */
 import { ProveedoresService } from './../../servicios/proveedores.service';
+import { formControlBinding } from '@angular/forms/src/directives/reactive_directives/form_control_directive';
 
 @Component({
   selector: 'app-proveedores',
@@ -9,12 +14,17 @@ import { ProveedoresService } from './../../servicios/proveedores.service';
 })
 export class ProveedoresComponent implements OnInit {
 
+  buscador: FormControl;
+  busqueda: string;
+
   /** proveedores que llegan de la base de datos */
   proveedores: any = [];
 
-  constructor(private proveedoresService: ProveedoresService) {
+  /** spinner cargando  */
+  cargando = true;
 
-    /** -------------------------- METODO GET ------------------------------*/
+
+  constructor(private proveedoresService: ProveedoresService) {
     this.proveedoresService.getProveedores().subscribe(proveedor => {
       for (const id$ in proveedor) {
         /** si la propiedad id$ existe en el objeto (Run) */
@@ -27,8 +37,8 @@ export class ProveedoresComponent implements OnInit {
             this.proveedores.push(p);
         }
       }
+      this.cargando = false;
     });
-
   }
 
   ngOnInit() {}

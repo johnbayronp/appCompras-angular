@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 /** Clases de Reactive Forms , importar Validators para las validaciones */
 import { FormControl, FormGroup , FormBuilder, Validators } from '@angular/forms';
-/** Importar un servicio  */
+/** Importar el servicio de presupuestos  */
 import { PresupuestoService } from '../../servicios/presupuesto.service';
- 
+/** Importamos el servicio de proveedores para poder traer la db de ellos */
+import { ProveedoresService } from '../../servicios/proveedores.service';
+
 
 @Component({
   selector: 'app-addpres',
@@ -26,12 +28,33 @@ export class AddpresComponent implements OnInit {
   base: any;
   total: any = 0;
 
-
+  /** Para traer los proveedores de la base de datos y guardarlos aqui */
+  proveedores: any[] = [];
   /** pf: (creada por nosotros donde tendremos el contructor del form)
    * presupuestoService:(donde guardaremos nuestro servicio creado post)
    */
   constructor(private pf: FormBuilder,
-              private presupuestoService: PresupuestoService) { }
+              private presupuestoService: PresupuestoService,
+              private proveedoresService: ProveedoresService) {
+
+
+    /** -------------------------- METODO GET ------------------------------*
+     * traemos los proveedores de la base de datos de child proveedores*/
+    this.proveedoresService.getProveedores().subscribe(proveedor => {
+      for (const id$ in proveedor) {
+        /** si la propiedad id$ existe en el objeto (Run) */
+        if (proveedor.hasOwnProperty(id$)) {
+        /** creamos la constate p para que guarde nuestro obj iterado
+         * con el id , y asignamos que para cada p.id$ tendremos un id$,
+         * y pasamos nuestro nuevo dato al array con .push */
+          const p = proveedor[id$];
+            p.id$ = id$;
+            this.proveedores.push(p.empresa);
+        }
+      }
+    });
+
+  }
 
   /** Inicializamos pasandole nuestros datos traidos del form de addpres.html
     * presupuestoForm es el mismo nombre de nuestro formulario en el html,

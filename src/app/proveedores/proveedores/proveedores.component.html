@@ -1,24 +1,43 @@
-<div class="container">
-  <h2 style="text-align: left">Proveedores </h2>
- <button class="btn btn-info float-md-right"><a routerLink="/addproveedores" class="white">Agregar nuevo</a></button>
-  <table class="table table-bordered table-striped">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Nombre</th>
-        <th>Compañia</th>
-        <th>Correo</th>
-        <th>Telefono</th>
-      </tr>
-    </thead>
-      <tbody>
-        <tr *ngFor="let provedor of proveedores">
-          <td>{{ provedor.id }}</td>
-          <td>{{ provedor.nombre }}</td>
-          <td>{{ provedor.empresa }}</td>
-          <td><a href="mailto:{{ provedor.email }}">{{ provedor.email }}</a></td>
-          <td>{{ provedor.telefono }}</td>
-        </tr>      
-      </tbody>
-  </table>
-</div> 
+
+  <!-- Spinner-->
+<div *ngIf="cargando">
+      <div class="spinner center" ></div>
+</div>
+
+  <div class="container" *ngIf="!cargando">
+   
+    <h2 style="text-align: left">
+    Proveedores 
+    </h2>
+  
+    <button class="btn btn-info float-md-right">
+      <a  routerLink="/addproveedores" 
+        class="white"> 
+        Agregar nuevo
+      </a>
+    </button>
+  
+
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Compañia</th>
+            <th>Ciudad</th>
+            <th>Correo</th>
+            <th>Telefono</th>
+          </tr>
+        </thead>
+          <tbody>
+            <tr *ngFor="let provedor of proveedores">
+              <td>{{ provedor.nombre }}</td>
+              <td>{{ provedor.empresa }}</td>
+              <td>{{ provedor.ciudad}}</td>
+              <td><a href="mailto:{{ provedor.email }}">{{ provedor.email }}</a></td>
+              <td>{{ provedor.telefono }}</td>
+            </tr>      
+          </tbody>
+      </table>
+    
+    </div>
+  

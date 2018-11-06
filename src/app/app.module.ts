@@ -28,7 +28,6 @@ import { ViewpresupuestoComponent } from './presupuesto/viewpresupuesto/viewpres
 import { EditComponent } from './presupuesto/edit/edit.component';
 import { RegistroComponent } from './autenticacion/registro/registro.component';
 import { InisesComponent } from './autenticacion/inises/inises.component';
-import { OrdserviciosComponent } from './profile/ordservicios/ordservicios.component';
 import { from } from 'rxjs';
 
 /** otro modulo - facturas */
@@ -60,8 +59,6 @@ const routes: Routes = [
         component: InisesComponent},
       { path: 'registro',
         component: RegistroComponent},
-      { path: 'addordenservicio',
-        component: OrdserviciosComponent},
       { path: 'addfact',
         component: AddfacturaComponent},
       { path: '**',
@@ -80,8 +77,7 @@ const routes: Routes = [
     ViewpresupuestoComponent,
     EditComponent,
     RegistroComponent,
-    InisesComponent,
-    OrdserviciosComponent
+    InisesComponent
   ],
   imports: [BrowserModule,
     /** Creamos RouterModule y pasamos las rutas (routes) */

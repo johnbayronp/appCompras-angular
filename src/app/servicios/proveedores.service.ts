@@ -69,4 +69,14 @@ export class ProveedoresService {
     console.log(url);
     return this.http.delete(url).pipe(map(res => res));
   }
+
+  /** ----------------- BUSQUEDA DE UN ELEMENTO EN LA DB */
+  getProveedoresSearch(busqueda: any) {
+
+    const url = `${ this.provURL }
+                ?orderBy="empresa"&startAt="${ busqueda }"&endAt="${ busqueda }\uf8ff"`;
+    return this.http.get(url).pipe(map(res => res));
+
+  }
+
 }
