@@ -34,7 +34,7 @@ export class ProveedoresService {
   }
 
   /** ----------------------- METODO GET - READ -------------------------*/
-  getProvedores() {
+  getProveedores() {
     return this.http.get(this.provsURL)
     .pipe(map( res => res));
   }

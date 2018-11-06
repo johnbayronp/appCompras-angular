@@ -9,18 +9,28 @@ import { ProveedoresService } from './../../servicios/proveedores.service';
 })
 export class ProveedoresComponent implements OnInit {
 
-  proveedores: any;
-  /** Para iniciar nuestro servicio en el contructor utilizamos la
-   * prioridad privada NombreDondeGuardaremosElServicioEnComponent: NombredelServicio
-   */
-  constructor(private proveedoresService: ProveedoresService) { }
+  /** proveedores que llegan de la base de datos */
+  proveedores: any = [];
 
-  /** Corremos nuestro servicio en la variable mensaje y
-   * asignamos en nuestro servicio el metodo ex: this.servicio.getCompras();
-   */
-  ngOnInit() {
-    /** traemos el array de provedores de tipo {.json} */
-    this.proveedores = this.proveedoresService.getProveedores();
+  constructor(private proveedoresService: ProveedoresService) {
+
+    /** -------------------------- METODO GET ------------------------------*/
+    this.proveedoresService.getProveedores().subscribe(proveedor => {
+      for (const id$ in proveedor) {
+        /** si la propiedad id$ existe en el objeto (Run) */
+        if (proveedor.hasOwnProperty(id$)) {
+        /** creamos la constate p para que guarde nuestro obj iterado
+         * con el id , y asignamos que para cada p.id$ tendremos un id$,
+         * y pasamos nuestro nuevo dato al array con .push */
+          const p = proveedor[id$];
+            p.id$ = id$;
+            this.proveedores.push(p);
+        }
+      }
+    });
+
   }
+
+  ngOnInit() {}
 
 }

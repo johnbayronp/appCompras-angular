@@ -35,8 +35,7 @@ export class ViewpresupuestoComponent implements OnInit {
   }
 
   recarga() {
-
-          /*** Para que se refresque la tabla  hacemos el array  presuspuesto = vacio 
+          /*** Para que se refresque la tabla  hacemos el array  presuspuesto = vacio
            * y copiamos todo el metodo susbcribe de getPresupuesto**/
           this.presupuestos = [];
           this.presupuestosService.getPresupuestos().subscribe(presupuesto => {

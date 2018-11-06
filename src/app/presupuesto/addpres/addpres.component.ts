@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup , FormBuilder, Validators } from '@angular/forms';
 /** Importar un servicio  */
 import { PresupuestoService } from '../../servicios/presupuesto.service';
-
+ 
 
 @Component({
   selector: 'app-addpres',
@@ -18,7 +18,9 @@ export class AddpresComponent implements OnInit {
   */
   presupuestoForm: FormGroup;
   presupuesto: any;
-  /** Creamos las variables artimeticas donde le daremos inicializacion */
+  /** Creamos las variables artimeticas donde le daremos inicializacion - para hacer
+   * calculos
+   */
   tipo: any;
   iva: any = 0;
   base: any;

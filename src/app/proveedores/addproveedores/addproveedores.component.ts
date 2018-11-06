@@ -1,6 +1,10 @@
 /** Importamos viewChild y NgForm */
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+/** Clases de Reactive Forms , importar Validators para las validaciones */
+import { FormControl, FormGroup , FormBuilder, Validators } from '@angular/forms';
+/** Importar un servicio  */
+import { ProveedoresService } from '../../servicios/proveedores.service';
+
 @Component({
   selector: 'app-addproveedores',
   templateUrl: './addproveedores.component.html',
@@ -8,10 +12,7 @@ import { NgForm } from '@angular/forms';
 })
 export class AddproveedoresComponent implements OnInit {
 
-  /** Agregamos @ViewChild como decorador para hacer una vista de formpro,
-   * y formpro: sera de tipo -> NgForm
-   */
-  @ViewChild('formpro') formpro: NgForm;
+  proveedorForm: FormGroup;
   proveedor: any;
 
   /** Cargar datos desde Select - agregamos un array en este caso de todas
@@ -22,35 +23,48 @@ export class AddproveedoresComponent implements OnInit {
     'Sincelejo', 'Santa Marta', 'Monteria', 'Cùcuta', 'Pereira', 'Monteria', 'Otra'
   ];
 
-  constructor() {
-    /**creamos un objeto que tenga los campos de addprovedores */
-    this.proveedor = {
-      nombre: '',
-      telefono: null,
-      nacionalidad: '',
-      email: '',
-      ciudad: '',
-      empresa: ''
-    };
-
+  constructor(  private proveedoresService: ProveedoresService,
+                private pf: FormBuilder) {
   }
+
+  ngOnInit() {
+    /**creamos un objeto que tenga los campos de addprovedores */
+    this.proveedorForm = this.pf.group({
+      nombre: ['', [Validators.required, Validators.minLength(10)]],
+      telefono: ['', [Validators.required]],
+      nacionalidad: ['', [Validators.required]],
+      email: ['', [Validators.required]],
+      ciudad: ['', [Validators.required]],
+      empresa: ['', [Validators.required]]
+    });
+  }
+
   /** Creamos el metodo para cuando el boton del formulario envie los datos,
    *   this.obj.atributo    this.viewChild.value.atributo
    * { this.proveedor.name = this.formpro.value.nombre}
    */
   onSubmit() {
 
-    this.proveedor.nombre = this.formpro.value.nombre;
-    this.proveedor.telefono = this.formpro.value.telefono;
-    this.proveedor.nacionalidad = this.formpro.value.nacionalidad;
-    this.proveedor.email = this.formpro.value.email;
-    this.proveedor.ciudad = this.formpro.value.ciudad;
-    this.proveedor.empresa = this.formpro.value.empresa;
-
-    /** Una vez enviado los datos se resete */
-    this.formpro.reset();
+    this.proveedor = this.saveProveedor();
+    /** ENVIO METODO POST*/
+    this.proveedoresService.postProveedor(this.proveedor)
+    .subscribe(newprov => {
+              });
+    this.proveedorForm.reset();
   }
-  ngOnInit() {
+
+  saveProveedor() {
+
+    const saveProveedor = {
+      nombre: this.proveedorForm.get('nombre').value,
+      telefono: this.proveedorForm.get('telefono').value,
+      nacionalidad: this.proveedorForm.get('nacionalidad').value,
+      email: this.proveedorForm.get('email').value,
+      ciudad: this.proveedorForm.get('ciudad').value,
+      empresa: this.proveedorForm.get('empresa').value
+    };
+
+    return saveProveedor;
   }
 
 }
