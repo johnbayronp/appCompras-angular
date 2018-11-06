@@ -24,9 +24,9 @@
       <button type="submit" class="btn btn-primary form-control">
         Login
       </button>
-
+      <p class="cursive"> No tengo cuenta, <a [routerLink]="['/registro']">Registrate!</a></p>
       <!-- Mensaje de alerta de usuario no registrado o no encontrado -->
-      <p class="alert alert-danger" *ngIf="mensaje"> La cuenta de correo no esta registrada
+      <p class="alert alert-danger cursive" *ngIf="mensaje"> La cuenta de correo no esta registrada
          , y/o la contraseña no es la correcta.</p>
 
     </form>  

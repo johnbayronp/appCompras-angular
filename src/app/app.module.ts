@@ -1,3 +1,6 @@
+/** MODULES EXT */
+import { FacturasModule } from './facturas/facturas.module';
+
 /** CLASES  */
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -10,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProveedoresService } from './servicios/proveedores.service';
 import { PresupuestoService } from './servicios/presupuesto.service';
 import { AutenticacionService } from './servicios/autenticacion.service';
+import { GuardService } from './servicios/guard.service';
 
 /** COMPONENTES */
 
@@ -24,7 +28,11 @@ import { ViewpresupuestoComponent } from './presupuesto/viewpresupuesto/viewpres
 import { EditComponent } from './presupuesto/edit/edit.component';
 import { RegistroComponent } from './autenticacion/registro/registro.component';
 import { InisesComponent } from './autenticacion/inises/inises.component';
+import { OrdserviciosComponent } from './profile/ordservicios/ordservicios.component';
+import { from } from 'rxjs';
 
+/** otro modulo - facturas */
+import { AddfacturaComponent } from './facturas/facturas/addfactura/addfactura.component';
 
 /** RUTAS  */
 /** Creamos las rutas cada una en formato document (json)*/
@@ -32,21 +40,30 @@ const routes: Routes = [
   /** path:'' *(raiz)* , component:*(Clase de component la misma de import)*
    * path: '**' cualquier ruta que no exista */
       { path: '',
-        component: InicioComponent },
+        component: InicioComponent},
       { path: 'proveedores',
-        component: ProveedoresComponent },
+        component: ProveedoresComponent,
+        canActivate: [GuardService] },
       { path: 'addproveedores',
-        component: AddproveedoresComponent },
+        component: AddproveedoresComponent,
+        canActivate: [GuardService] },
       { path: 'editpres/:id',
-        component: EditComponent },
+        component: EditComponent,
+        canActivate: [GuardService] },
       { path: 'addpres',
-        component: AddpresComponent },
+        component: AddpresComponent,
+        canActivate: [GuardService] },
       { path: 'viewpresupuesto',
-        component: ViewpresupuestoComponent},
+        component: ViewpresupuestoComponent,
+        canActivate: [GuardService]},
       { path: 'inises',
         component: InisesComponent},
       { path: 'registro',
         component: RegistroComponent},
+      { path: 'addordenservicio',
+        component: OrdserviciosComponent},
+      { path: 'addfact',
+        component: AddfacturaComponent},
       { path: '**',
         component: InicioComponent },
     ];
@@ -63,17 +80,18 @@ const routes: Routes = [
     ViewpresupuestoComponent,
     EditComponent,
     RegistroComponent,
-    InisesComponent
+    InisesComponent,
+    OrdserviciosComponent
   ],
-  imports: [
-  BrowserModule,
+  imports: [BrowserModule,
     /** Creamos RouterModule y pasamos las rutas (routes) */
     RouterModule.forRoot(routes),
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FacturasModule
   ],
-  providers: [ProveedoresService, PresupuestoService, AutenticacionService],
+  providers: [ProveedoresService, PresupuestoService, AutenticacionService, GuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

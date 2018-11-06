@@ -33,7 +33,7 @@
         <input type="password" class="form-control"
               id="inputPassword"
               formControlName="password">
-        <p class="alert alert-danger" *ngIf="erroresForm.password"> 
+        <p class="alert alert-danger cursive" *ngIf="erroresForm.password"> 
                 {{ erroresForm.password }}
         </p>
 
@@ -44,6 +44,8 @@
         Registrar
       </button>
     </form>
+
+    <p class="cursive"> Ya tengo cuenta, <a [routerLink]="['/inises']"> Logueate.</a></p>
   </div>
 
   <div class="col col-md"></div>

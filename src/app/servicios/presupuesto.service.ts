@@ -54,10 +54,6 @@ export class PresupuestoService {
 
 
 
-  /** ----------------------- METODO PUT - UPLOAD --------------------------*/
-  /** hacemos get para antes de actuar [editarlo] recuperarlo
-   * id$ -> como se identifican los registros en firebase
-   */
   getPresupuesto(id$: string) {
     /** url/id_seleccionado.json */
     const url = `${this.preURL}/${id$}.json`;
@@ -65,6 +61,10 @@ export class PresupuestoService {
   }
 
 
+  /** ----------------------- METODO PUT - UPLOAD --------------------------*/
+  /** hacemos get para antes de actuar [editarlo] recuperarlo
+   * id$ -> como se identifican los registros en firebase
+   */
   putPresupuesto(presupuesto: any, id$: string) {
     const newpre = JSON.stringify(presupuesto);
     const headers = new HttpHeaders({
