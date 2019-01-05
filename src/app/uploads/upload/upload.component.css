@@ -1,0 +1,16 @@
+.uploader {
+    background-color:#8e16168a;
+    color: white;
+    width: 100%;
+    height: 160px;
+    padding: top 40px;
+    text-align: center;
+    border-radius: 15px;
+}
+.center{
+    padding-top: 42px; 
+}
+
+.centrado { 
+    margin: auto;
+}

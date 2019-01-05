@@ -1,0 +1,67 @@
+<div class="row">
+  <div class="title">
+    <h1>Ordenes de Servicio</h1>
+  </div>
+</div>
+<hr>
+
+<div class="row">
+  <div class="col-md-2"></div>
+ 
+  <div class="col-md-8">
+ 
+    <!--BOX UPLOAD FILE - NOSELECT-->
+    <div class="uploader">
+        <div class="center">
+            <h5 *ngIf="!selectedFiles">Cargar Archivo &nbsp;</h5>  <!--&nbsp Espacio Texto" "Texto-->   
+           
+            <div class="centrado" *ngIf="selectedFiles">
+              <p style="font-size:7 px"> 
+              <i class="fas fa-archive"></i>
+              </p>
+            </div>
+           
+            <input type="file" (change)="detectFiles($event)"> 
+        </div>
+      
+    </div>
+    <br>
+
+    <!-- BOTONES SUBIR Y CANCELAR-->
+    <div class="row centrado">
+      <div class="centrado">
+
+          <button type="button" class="btn btn-success"
+                  [disabled]="!selectedFiles"
+                  (click)="uploadSingle()">
+                  Subir
+          </button>
+
+          <a class="btn btn-alert-danger" routerLink="/">Cancelar</a>
+      </div>
+    </div>
+
+
+    <!-- LOADING ARCHIVO , SOLO SE MUESTRA CUANDO SUBAMOS EL ARCHIVO-->
+    <div  *ngIf="loading">
+      <div class="progress">
+          
+          <div class="progress-bar progress-bar-animated"
+                  [ngStyle]="{'width': currentUpload?.progress + '%'}">
+          </div>
+          
+          <p>Subiendo {{ currentUpload?.name}} | 
+            {{currentUpload?.progress | number: '1.2_2' }} % Completado
+          </p>
+
+      </div>
+    </div>
+
+    
+
+  </div>
+
+  <div class="col-md-2"></div>
+
+</div>
+<hr>
