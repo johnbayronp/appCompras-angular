@@ -4,6 +4,4 @@ Aplicación de compras desarrollada en angular
 Usage Angular/Cli
 
 
-Desarrollada partiendo de una aplicacion de compras, 
-con el fin de optimizar una app de compras con una base
-de datos en firebase.
+Este aplicativo tien como fin, disponer de productos a infinidad de clientes, los cuales podrán generar sus compras seguras a través de sus usuarios. Los usuarios pueden conectarse vía social media.
